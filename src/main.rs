@@ -26,7 +26,7 @@ fn main() {
 // │       └── multi-file-executable/
 // │           ├── main.rs
 // │           └── some_module.rs
-// ├── benches/
+// ├── benches/                         this is for benchmarking propouse
 // │   ├── large-input.rs
 // │   └── multi-file-bench/
 // │       ├── main.rs

@@ -81,6 +81,15 @@ fn main() {
         break;
     }
 
+    // break uses conditional names to breaks
+    'bob: loop {
+        loop {
+            loop {
+                break 'bob;
+            }
+        }
+    }
+
     let mut coun = 0;
 
     let result = loop {
