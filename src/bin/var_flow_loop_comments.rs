@@ -82,6 +82,7 @@ fn main() {
     }
 
     // break uses conditional names to breaks
+    // same for continue
     'bob: loop {
         loop {
             loop {

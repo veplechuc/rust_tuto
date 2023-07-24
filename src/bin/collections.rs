@@ -44,6 +44,8 @@ fn main() {
 
     let my_array: [u8; 4] = [1, 2, 6, 3];
 
+    let arr = [1, 2, 3];
+
     let mys_slice = &my_array[1..3]; // 2,6,3
 
     let sentence = "The fox jumps over the dog";
@@ -54,8 +56,15 @@ fn main() {
 
     println!("Index: {:#?}", index);
 
+    let arr: [char; 3] = ['中', '国', '人'];
+
+    let slice = &arr[..1];
+
+    println!("{:#?}", slice);
+
     //let words_after_fox = &sentence[index..]; // Error: Can't index str with Option<usize>
-    if let Some(ind) = index {  // asigna a idx el valor de index que puede ser Some or None
+    if let Some(ind) = index {
+        // asigna a idx el valor de index que puede ser Some or None
         let words_after_fox = &sentence[ind..];
         println!("this is after the index --> {}", words_after_fox);
     }
