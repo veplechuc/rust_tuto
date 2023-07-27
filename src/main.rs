@@ -3,12 +3,11 @@ fn main() {
     let x = 5; // variables ARE inmutable!!!
     println!("{}", x);
 
-    // x= 10; error because it is inmutabñe
+    // x= 10; error because it is inmutable
 
     let x = "six"; // shadowing variable x
 
-    let _variable : i128;  // '_' previene que el compilador diga que no esta usada
-
+    let _variable: i128; // '_' previene que el compilador diga que no esta usada
 
     println!("{}", x); // prints 6 and 6%
 }
