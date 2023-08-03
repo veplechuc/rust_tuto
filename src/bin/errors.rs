@@ -101,6 +101,24 @@ pub enum Option<T> {
     Some(T), // es una tuple struct
 }
 
+fn using_option() {
+    let x = 2.0;
+    let y = 1.0;
+
+    let result = if y != 0.0 { Some(x / y) } else { None };
+    println!("{:?}", result);
+
+    // if we want the value
+    match result {
+        Some(z) => println!("{}", z),
+        None => println!("Not permited divided by zero"),
+    }
+    // another way
+    if let Some(z) = result {
+        println!("{}", z)
+    } // if the distructuring (let Some(z) = result) works it will print the result
+}
+
 pub enum Result<T, E> {
     // explicit defines success and error states
     /// Contains the success value

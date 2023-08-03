@@ -1,3 +1,25 @@
+// struts is used to group values/characteristics
+
+//Composition:
+//Instead of using inheritance, Rust encourages the use of composition.
+//Composition means that one struct can include another struct as a field
+struct Parent {
+    // Parent fields
+}
+
+struct Child {
+    parent: Parent,
+    // Child-specific fields
+}
+
+impl Parent {
+    // Parent methods
+}
+
+impl Child {
+    // Child-specific methods
+}
+
 #[derive(Debug)]
 struct User {
     active: bool,
@@ -17,6 +39,7 @@ struct Product {
     in_stock: bool,
 }
 
+/* a struct could have a many impl defined */
 impl Product {
     fn new(name: String, price: f32) -> Product {
         Product {
@@ -74,6 +97,15 @@ fn main() {
     let u2 = set_email(u1);
     println!("{:?}", u2);
     println!("Success!");
+
+    /////////////////// OTHER STRUCT DEF
+    struct Colour(i32, i32, i32);
+
+    struct Point(i32, i32, i32);
+    /*you can use strcut to group data but you can not pass
+    to a func expecting a Colour struct a Point struct
+     */
+
 
     ////////////////////////////////////////////////
 

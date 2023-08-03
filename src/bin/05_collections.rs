@@ -62,9 +62,9 @@ fn main() {
 
     println!("{:#?}", slice);
 
-    //let words_after_fox = &sentence[index..]; // Error: Can't index str with Option<usize>
+    // let words_after_fox = &sentence[index..]; // Error: Can't index str with Option<usize>
     if let Some(ind) = index {
-        // asigna a idx el valor de index que puede ser Some or None
+        // assign to  ind the value of index That could be Some or None
         let words_after_fox = &sentence[ind..];
         println!("this is after the index --> {}", words_after_fox);
     }

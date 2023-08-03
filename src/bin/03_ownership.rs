@@ -6,7 +6,7 @@
 3 When the owner goes out of the scope, the value will be dropped
  */
 
-/*MEMORY options
+/* MEMORY options
 
 Garbage collector PROS error free, facter write time, CONS: No memory control, slower unpredictable runtime performance, larger programs
 MAnual Management: PROS: control over memory, faster runtime, smaller program, CONS error prone, slower write time
@@ -82,7 +82,7 @@ fn double_ref() {
     let _r1: &String = &no_mut;
     let _r2: &String = &no_mut;
 
-    /// COSNIDERAR SIEMPRE EL SCOPE PORQUE COMIENZA CUANDO SE DECLARA Y FINALIZA CUANDO SE USA POR ULTIMA VEZ
+    // COSNIDERAR SIEMPRE EL SCOPE PORQUE COMIENZA CUANDO SE DECLARA Y FINALIZA CUANDO SE USA POR ULTIMA VEZ
     let mut ns_mut = String::from("some another text");
 
     let _r11: &String = &ns_mut; // R11 SCOPE COMIENZA ACA

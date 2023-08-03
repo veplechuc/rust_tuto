@@ -3,7 +3,7 @@
 use rand::Rng;
 use std::{io, result};
 
-//RUST CORE DESIGN PHILOSOPHIES
+// RUST CORE DESIGN PHILOSOPHIES
 // Safety --var used in does not change so no bugs
 // concurrency --  shared on different threads  -
 // speed -- the compiler know the value have optimized the machine code produced
@@ -38,18 +38,18 @@ fn main() {
     let tr = str; // MOVES THE VALUE STR CAN NOT BE USED ANYMORE!!!
 
     let str = String::from("another");
-    let tr = str.clone(); // need to clone it order to have a copy
+    let tr = str.clone(); // need to clone it in order to have a copy
 
     // String is mutable most types does not have Copy trait dont copy the value it moves
     let mut str = String::from("string");
     str.push_str("...another"); // str = "string...another"
 
-    /// BORRROWING
+    // ------------------- BORRROWING
     //implicit
     let s = String::from("hola");
     let st = &s; // borrows but does not owns s
 
-    // explicit
+    //-------- explicit
     let s = String::from("hola");
     let st: &String = &s; // borrows but does not owns s-- I wrote &String
 
@@ -72,7 +72,7 @@ fn main() {
 
     println!("tup.0 -> {}--- tup1->{} tup11->{}", tup.0, tup1, tup11);
 
-    //////  arrays
+    // ---------- ARRAYS --------------
 
     let arr = [1, 2, 3];
 
@@ -116,7 +116,7 @@ fn main() {
         println!("sum esta entre 10 y 900");
     }
 
-    //ternary
+    // ternary
     let condition = true;
     let numb = if condition { 7 } else { 10 };
 
@@ -213,34 +213,4 @@ print!("{:*>10}");
 //     num if num > 0 => kkkkk,
 //     ...
 //     _   => otra cosa
-// }
-
-// Looping
-
-//labeld loop
-
-// OWnership
-
-// FUNCTIONS
-//passing variables by reference borrowing so you dont loose the object
-
-// fn da(){
-//     let s = String::from("hola");
-
-//     f2(&s)
-// }
-
-// fn f2(param: &String){
-//     ...
-// }
-
-// // MUTABLE
-// fn da(){
-//     let mut s = String::from("hola");
-
-//     f2(&mut s)
-// }
-
-// fn f2(param: &mut String){
-//     ...
 // }
