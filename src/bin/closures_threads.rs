@@ -97,7 +97,7 @@ fn main() {
     // On the child threads print out the values you receive. Close the sending side in the main
     // thread by calling `drop(tx)` (assuming you named your sender channel variable `tx`).  Join
     // the child threads.
-    println!("Main thread: Exiting.")
+    println!("Main thread: Exiting.");
 
     // another example of closures
 
@@ -107,7 +107,4 @@ fn main() {
     };
 
     f();
-
 }
-
-

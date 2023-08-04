@@ -1,3 +1,4 @@
+#![allow(unused)]
 //sequences types
 //-----------------
 // Vec -> a growable sequence of elements
@@ -22,7 +23,7 @@
 
 // Tuples -> finite (contains different types sequensce of elementes) objs of different types
 
-//Slices -> views into a block of memory, mutable o shared, dynamically sized
+// Slices -> views into a block of memory, mutable o shared, dynamically sized
 
 use std::collections::HashMap;
 
@@ -39,7 +40,6 @@ fn main() {
     for (name, value) in &coffe {
         println!("name ->{name}, vlaue->{value}");
     }
-
     let tup = (1, 2, "something");
 
     let my_array: [u8; 4] = [1, 2, 6, 3];
