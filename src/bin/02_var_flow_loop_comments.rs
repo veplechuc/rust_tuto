@@ -183,7 +183,7 @@ fn main() {
 
 fn suma(x: i32, y: i32) -> i32 {
     println!("algo{} ", x);
-    return x + y; // o sin return la ultima sentencia
+    return x + y; // or without "return", will return last sentence
 }
 
 // formatting code run cargo fmt
@@ -195,15 +195,15 @@ fn suma(x: i32, y: i32) -> i32 {
 
 // portability use i32 or i16 let x: i32
 // for velocity use isize -- let x: isize
-// {:>10} pone en un campo de 10 espacios alineados a la derecha
-// {:<10} idem pero a la izquierda
+// {:>10} 10 spaces in a field right aligned
+// {:<10} to the left
 
 println!("{:<10}");
 print!("{:*>10}");
 
-// si definimos una func con salida de info hay que retornarla
-// fn suma(x: i32, y: i32) -> i32 {....} tiene que devolver algo
-// fn suma(x: i32, y: i32) {....} no necesariamente
+// if a func defines a return type we MUST return it
+// fn suma(x: i32, y: i32) -> i32 {....} Must return something
+// fn suma(x: i32, y: i32) {....} not necesary
 // let num = 100;
 // match num{
 //     100 => algo,

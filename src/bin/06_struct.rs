@@ -1,3 +1,4 @@
+#[allow(dead_code)]
 // struts is used to group values/characteristics
 
 //Composition:
@@ -21,13 +22,6 @@ impl Child {
 }
 
 #[derive(Debug)]
-struct User {
-    active: bool,
-    username: String,
-    email: String,
-    sign_in_count: u64,
-}
-#[derive(Debug)]
 struct Rectangle {
     width: u32,
     height: u32,
@@ -39,7 +33,7 @@ struct Product {
     in_stock: bool,
 }
 
-/* a struct could have a many impl defined */
+/* a struct could have many impl defined */
 impl Product {
     fn new(name: String, price: f32) -> Product {
         Product {
@@ -64,10 +58,17 @@ impl Product {
     }
 }
 
-/* Strutcs can be taken as the definition of object attributes en OOP
+/* Strutcs can be taken as the definition of object attributes on OOP
 allows to define a new type that acces by name the attribute
 
 */
+#[derive(Debug)]
+struct User {
+    active: bool,
+    username: String,
+    email: String,
+    sign_in_count: u64,
+}
 
 fn build_user(email: String, username: String) -> User {
     User {
@@ -98,16 +99,14 @@ fn main() {
     println!("{:?}", u2);
     println!("Success!");
 
-    /////////////////// OTHER STRUCT DEF
+    // OTHER STRUCT DEF
     struct Colour(i32, i32, i32);
 
     struct Point(i32, i32, i32);
-    /*you can use strcut to group data but you can not pass
+    /*
+    you can use strcut to group data but you can not pass
     to a func expecting a Colour struct a Point struct
-     */
-
-
-    ////////////////////////////////////////////////
+    */
 
     let scale = 2;
     let rect1 = Rectangle {

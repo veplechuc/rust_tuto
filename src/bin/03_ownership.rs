@@ -42,33 +42,33 @@ fn main() {
 
     //second example
     let s_ref = String::from("some another text");
-    let len: usize = from_reference(&s_ref); // el & nos permite pasar la referencia y no perder s
+    let len: usize = from_reference(&s_ref); //  & allows to use the reference to s_ref
     println!("the length of {} is {}", s_ref, len);
 
     //third example
     let mut s_mut = String::from("some another text");
-    from_mut(&mut s_mut); // el & nos permite pasar la referencia y no perder s
+    from_mut(&mut s_mut); // s_mut can be changed and passed to the func
     println!("S_MUT  is {}", s_mut);
 }
 
-// esta funcion toma el ownership de la variable s
+// this func takes  ownership of s
 fn takes_ownership(some_str: String) {
     println!("{}", some_str);
 }
 // second example
 fn from_reference(some_var: &String) -> usize {
-    // esta funcion hace un borrow de s pero no se puede cambiar s
+    // this function borrow s but can not change s
     let length: usize = some_var.len();
     return length;
 }
 
-// esta funcion toma la referencia de una var mutable y le agrega datos
+// this func takes the mutable var reference and add some data
 fn from_mut(some_var: &mut String) {
     some_var.push_str(" agregado");
 }
 
-//NO SE PUEDE TENER LA REFERENCIA DE UNA MUTABLE MAS DE UNA VEZ
-// SI SE PUEDE TENER MAS DE UNA REFERENCIA A UNA VAR INMUTABLE
+// can not have a mutable reference more than once
+// can have multiple references to inmutable variable
 fn double_ref() {
     let mut s_mut = String::from("some another text");
 
@@ -82,15 +82,15 @@ fn double_ref() {
     let _r1: &String = &no_mut;
     let _r2: &String = &no_mut;
 
-    // COSNIDERAR SIEMPRE EL SCOPE PORQUE COMIENZA CUANDO SE DECLARA Y FINALIZA CUANDO SE USA POR ULTIMA VEZ
+    // the variable scope begins when the var is declared and end when is no more used
     let mut ns_mut = String::from("some another text");
 
-    let _r11: &String = &ns_mut; // R11 SCOPE COMIENZA ACA
+    let _r11: &String = &ns_mut; // R11 SCOPE begins here
     let _r21: &String = &ns_mut;
 
-    println!("{} {}", _r11, _r21); //R11 SCOPE TERMINA ACA _(SI NO SE VULEVE A USAR)
+    println!("{} {}", _r11, _r21); //R11 SCOPE Ends here
 
-    let _r31: &mut String = &mut ns_mut; //ESTO ANDA PORQUE R11 Y R21 YA NO ESTAN EN EL SCOPE
+    let _r31: &mut String = &mut ns_mut; // This works because R11 Y R21 are not in the scope anymore
 }
 
 fn call_dangle() {
@@ -106,7 +106,7 @@ fn dangle() -> &String {
 
 // REFERENCES rules
 
-// 1 AT ANY GIVEN TIME YOU CAN HAVE EITHER ONE MUTABLE REFERENCEOR ANY IMMUTABLE REFERENCES
+// 1 AT ANY GIVEN TIME YOU CAN HAVE EITHER ONE MUTABLE REFERENCE OR ANY IMMUTABLE REFERENCES
 // 2 REFERENCES MUST ALWAYS BE VALID
 
 // SLICING ...

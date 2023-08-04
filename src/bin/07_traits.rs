@@ -1,14 +1,14 @@
+#[allow(dead_code)]
 // Traits can be implemented by
 // struct, closure, enum function
 
 // Adding #[derive(Clone, Debug)] applies those traits to the specific struct
-
 #[derive(Clone, Debug)]
 pub struct Algo {
     var1: u32,
     var2: u32,
 }
-
+#[derive(Clone, Debug)]
 pub struct Otra {
     var11: u32,
     var12: u32,
@@ -68,6 +68,8 @@ fn main() {
 
     let algo = Algo { var1: 10, var2: 1 };
 
+    let algo_default: Algo = Default::default();
+
     algo.una_func();
 
     // since we implement derive Clone
@@ -78,6 +80,4 @@ fn main() {
         var1: 100,
         ..Default::default()
     };
-
-    
 }

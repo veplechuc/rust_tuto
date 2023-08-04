@@ -14,16 +14,12 @@ fn main() {
 
 // MANAGING RUST VERSIONS
 
-
 // A particular version of Rust (and it's associated version of the standard library and other tools) is called a toolchain.
 // rustup can manage multiple toolchains on your machine at once. https://rust-lang.github.io/rustup/concepts/toolchains.html
-
-// Then, you can use directory overrides (https://rust-lang.github.io/rustup/overrides.html#directory-overrides) 
-// to customize which versions of Rust you use locally, 
-// or you can add a toolchain file to specify that no matter which machine a project is on, 
+// Then, you can use directory overrides (https://rust-lang.github.io/rustup/overrides.html#directory-overrides)
+// to customize which versions of Rust you use locally,
+// or you can add a toolchain file to specify that no matter which machine a project is on,
 // it must use a specific version of Rust (https://rust-lang.github.io/rustup/overrides.html#the-toolchain-file)
-
-
 
 // MAIN STRUCTURE OF RUST PROJECT
 // .
