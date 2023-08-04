@@ -23,3 +23,16 @@ cargo doc --no-deps --open
 --open: opoens index on the default browser
 
  */
+
+
+ // RUST CORE DESIGN PHILOSOPHIES
+// Safety --var used in does not change so no bugs
+// concurrency --  shared on different threads  -
+// speed -- the compiler know the value have optimized the machine code produced
+
+// -compiled
+// - strongly typed
+// - secure
+// - no garbage collector
+// - no implicit casting
+// - variables are inmutable by default

@@ -37,6 +37,14 @@ fn main() {
     let mut coffe = HashMap::new();
     coffe.insert("latte", 10);
 
+    let idx: usize = 0; // we can not use i32
+    println!("{}", my_vec[idx]);
+
+    match my_vec.get(6) {
+        Some(x) => println!("{}", x),
+        None => println!("out of index"),
+    }
+
     for (name, value) in &coffe {
         println!("name ->{name}, vlaue->{value}");
     }
@@ -45,6 +53,12 @@ fn main() {
     let my_array: [u8; 4] = [1, 2, 6, 3];
 
     let arr = [1, 2, 3];
+
+    let arr_with_som_val = [33u16; 15]; // it will create anarray of 15 position with 33 value
+
+    //let matrix [[i32;2];3]
+
+    println!("{:?}", arr); // use the :? to print the all arrr, with the debug mark
 
     let mys_slice = &my_array[1..3]; // 2,6,3
 

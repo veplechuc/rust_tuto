@@ -17,13 +17,14 @@ struct Spider {
 }
 
 //THINK ON TRAITS AS A SOME KIND OF INTERFACE
-// the method can implemented or not if it is implemented
+// the method can implemented or not
+//if it is implemented
 // the specific implementation of the struct
 // can use it as default. check Ant or Spider impl
 trait Animal {
-    // fn talk(&self) -> String; // &self, allows the method th acces the data in the implemented strcut
+    // fn talk(&self) -> String; // &self, allows the method to acces the data in the implemented strcut
     fn talk(&self) -> String {
-        String::from("Cant talk!!")
+        String::from("Cant talk!!") // default implementation
     }
 }
 
@@ -41,15 +42,13 @@ impl Animal for Spider {}
 // TRAITS AS PARAMETERS AND TRAITS BOUNDS
 
 fn make_animal_talk(animal: &(impl Animal)) {
-    // usamos 2 params en trits + una funcion ahora make_animal_talk acepta cualquier type que
-    // implemente Animal traits ... en lugar de la impl concreta
-    // como definimos animal como impl Animal + Display podemos llamar a talk e imprimir
+    // implement Animal traits instead of an concrete implementation
     println!(
-        "imprimimos lo correspondiente implementado en rl trait {}",
+        "imprimimos lo correspondiente implementado en el trait {}",
         animal.talk()
     );
 }
-// USANDO GENERICS es lo mismo que lo anterior
+// USANDO GENERICS
 fn make_generic_talk<T>(animal: &T)
 where
     T: Animal,
@@ -58,12 +57,12 @@ where
 }
 
 /*
-podemos usar multiples TRAITS
+we can use multiples TRAITS
 fn make_generic_talk <T>(animal: &T)
-where T: Animal + std::fmt::Display,{ <<---- com usamos aca
+where T: Animal + std::fmt::Display,{ <<---- here we add the Display trait
     println!("imprimimos usando generics {}", animal.talk());
 }
-o bien
+or
 fn make_animal_talk(animal: &(impl Animal + std::fmt::Display)){
     ....
 }
@@ -94,7 +93,7 @@ fn ret_val_box(var: bool) -> Box<dyn Animal> {
 // ASSOCIATED TYPES
 trait Incrementor {
     type Item; //In traits, type is used to declare an associated type
-    fn increment(&mut self) -> Self::Item; // returns the valeu of that type
+    fn increment(&mut self) -> Self::Item; // returns the value of that type
 }
 
 struct Counter {
@@ -120,6 +119,7 @@ trait File {
 }
 
 struct Logger;
+
 impl Logger {
     fn write(&self) {
         println!("write this from logger to screen...")
@@ -140,7 +140,7 @@ trait Speak {
 trait Greet: Speak {
     fn greet(&self) {
         self.speack();
-        println!(" esto es especifico de geet...");
+        println!(" esto es especifico de greet...");
     }
 }
 

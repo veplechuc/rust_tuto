@@ -1,3 +1,4 @@
+#![allow(dead_code)]
 enum IpAdrr {
     V4(u8, u8),
     V6,

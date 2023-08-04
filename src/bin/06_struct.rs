@@ -1,4 +1,4 @@
-#[allow(dead_code)]
+#![allow(dead_code)]
 // struts is used to group values/characteristics
 
 //Composition:

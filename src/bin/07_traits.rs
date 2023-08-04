@@ -1,4 +1,4 @@
-#[allow(dead_code)]
+#![allow(dead_code)]
 // Traits can be implemented by
 // struct, closure, enum function
 
@@ -20,13 +20,13 @@ pub trait Somthing {
 
 impl Somthing for Algo {
     fn una_func(&self) {
-        print!("implementation of una_func for Algo struct \n")
+        println!("implementation of una_func for Algo struct \n")
     }
 }
 
 impl Somthing for Otra {
     fn una_func(&self) {
-        print!("implementation of una_func for Otra struct \n")
+        println!("implementation of una_func for Otra struct \n")
     }
 }
 

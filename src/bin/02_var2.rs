@@ -3,18 +3,6 @@
 use rand::Rng;
 use std::{io, result};
 
-// RUST CORE DESIGN PHILOSOPHIES
-// Safety --var used in does not change so no bugs
-// concurrency --  shared on different threads  -
-// speed -- the compiler know the value have optimized the machine code produced
-
-// -compiled
-// - strongly typed
-// - secure
-// - no garbage collector
-// - no implicit casting
-// - variables are inmutable by default
-
 fn main() {
     println!("Hello, world!");
     let x = 5; // variables ARE inmutable!!!
@@ -33,6 +21,15 @@ fn main() {
     let dat: u8 = 255; //when it reaches the maximun values then 256 -> 0, 257 -> 1 .....
 
     println!("{}", dat);
+
+    let s = "hello there"; //&str is a string slice - can not index
+    for c in s.chars().rev() {
+        println!("{}", c)
+    }
+
+    if let Some(c) = s.chars().nth(0) {
+        println!("first char of str -> {}", c)
+    }
 
     let str = String::from("string");
     let tr = str; // MOVES THE VALUE STR CAN NOT BE USED ANYMORE!!!
@@ -174,10 +171,29 @@ fn main() {
 
     //labeld loop;
 
-    'outer: loop {
-        loop {
-            break 'outer;
+    // 'outer: loop {
+    //     loop {
+    //         break 'outer;
+    //     }
+    // }
+    pattern();
+}
+
+//Pattern matching
+
+fn pattern() {
+    let num = -1;
+    match num {
+        100 => println!("one hundred"),
+        27..=50 => println!("between 25 and 50"), // for range
+        25 | 26 => {
+            // more than one sentence
+            println!("25 or 26");
+            println!("not sure!")
         }
+        _ if num > 0 => println!("sure is positive!"), // conditional
+
+        _ => println!("I dont know .. and I dont care!"), // no matches
     }
 }
 
@@ -198,19 +214,5 @@ fn suma(x: i32, y: i32) -> i32 {
 // {:>10} 10 spaces in a field right aligned
 // {:<10} to the left
 
-println!("{:<10}");
-print!("{:*>10}");
-
-// if a func defines a return type we MUST return it
-// fn suma(x: i32, y: i32) -> i32 {....} Must return something
-// fn suma(x: i32, y: i32) {....} not necesary
-// let num = 100;
-// match num{
-//     100 => algo,
-//     25..=50 => lll,
-//     25 | 50 => { algo;
-//                 algo mas }
-//     num if num > 0 => kkkkk,
-//     ...
-//     _   => otra cosa
-// }
+// println!("{:<10}");
+// print!("{:*>10}");
