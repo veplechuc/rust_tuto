@@ -113,7 +113,7 @@ fn using_option() {
         Some(z) => println!("{}", z),
         None => println!("Not permited divided by zero"),
     }
-    // another way
+    // another way -> if let / while let
     if let Some(z) = result {
         println!("{}", z)
     } // if the distructuring (let Some(z) = result) works it will print the result
