@@ -1,70 +1,66 @@
-
 // we need to tell the compiler that T implements Display in order to be printed
 
-fn print_data<T: std::fmt::Display>(vec: &[T], label: &str){ //for multuple generic params use <T, U, V,...
+fn print_data<T: std::fmt::Display>(vec: &[T], label: &str) {
+    //for multuple generic params use <T, U, V,...
     println!("{}", label);
-    for elem in vec{
+    for elem in vec {
         println!("{}", elem);
     }
 }
 //Another way is
 fn print_data2<T>(vec: &[T], label: &str)
-where T: std::fmt::Display + PartialOrd{ //for multuple generic params use <T, U, V,...
+where
+    T: std::fmt::Display + PartialOrd,
+{
+    //for multuple generic params use <T, U, V,...
     println!("{}", label);
-    for elem in vec{
+    for elem in vec {
         println!("{}", elem);
     }
 }
 
 //GENERICS WITH STRUCTS
 
-struct Coordinate <T, U>{ // with this we can pass an I32 or f64
+struct Coordinate<T, U> {
+    // with this we can pass an I32 or f64
     longitude: T,
-    latitude: U, 
+    latitude: U,
 }
 
 //GENERICS WITH MERHIDS
 
-impl <T: std::fmt::Display, U: std::fmt::Display> Coordinate<T, U> {
-    fn display(&self){
-        println!("location latitude: {}, longitude: {}", &self.latitude, &self.longitude);
+impl<T: std::fmt::Display, U: std::fmt::Display> Coordinate<T, U> {
+    fn display(&self) {
+        println!(
+            "location latitude: {}, longitude: {}",
+            &self.latitude, &self.longitude
+        );
     }
 }
 
-impl Coordinate <f64, f64> {
-    fn dist(&self, other: &Coordinate<f64, f64>) -> f64{
+impl Coordinate<f64, f64> {
+    fn dist(&self, other: &Coordinate<f64, f64>) -> f64 {
         let long = &self.longitude + &other.longitude;
         let lati = &self.latitude + &other.latitude;
         long + lati
     }
-    
 }
 
 // GENERICS ON ENUMS
-enum Result <T,E> {
+enum Result<T, E> {
     Ok(T),
     Err(E),
 }
 
-fn divide(a: f64, b: f64)-> Result<f64, String>{
-    if b == 0.0{
+fn divide(a: f64, b: f64) -> Result<f64, String> {
+    if b == 0.0 {
         Result::Err(String::from("error division by zero"))
     } else {
-        Result::Ok(a/b)
+        Result::Ok(a / b)
     }
-
 }
 
-
-fn main(){
-    let vec_tor = vec![1,2,3];
-    let vec_float = vec![1.2, 2.3, 3.4];
-    // print_data(&vec_tor, "some label");
-    // print_data(&vec_float, "anoter label ");
-
-    // print_data2(&vec_tor, "some label");
-    // print_data2(&vec_float, "anoter label ");
-
+fn main() {
     let location1 = Coordinate {
         latitude: 3.100,
         longitude: 18.889,
@@ -80,7 +76,6 @@ fn main(){
         longitude: 5.558,
     };
 
-
     // location1.display();
     // location2.display();
     println!("total {}", location1.dist(&location3));
@@ -89,7 +84,4 @@ fn main(){
         Result::Err(err) => println!("Error: {}", err),
         Result::Ok(res) => println!("Error: {}", res),
     }
-   
-    
-
 }

@@ -36,3 +36,4 @@ cargo doc --no-deps --open
 // - no garbage collector
 // - no implicit casting
 // - variables are inmutable by default
+// - no null values

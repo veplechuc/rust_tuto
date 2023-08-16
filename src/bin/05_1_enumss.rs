@@ -96,4 +96,44 @@ fn main() {
 
         _ => println!("no taken into account"),
     }
+
+    // MORE EXAMPLES
+
+    // Create an Enum for days of week
+    enum Day {
+        Monday,
+        Tuesday,
+        Wednesday,
+        Thursday,
+        Friday,
+        Saturday,
+        Sunday,
+    }
+
+    // Define function for Day enum
+    impl Day {
+        fn is_weekend(&self) -> bool {
+            match self {
+                Day::Saturday | Day::Sunday => true,
+                _ => false,
+            }
+        }
+    }
+
+    // Use enum to store todays day
+    let today: Day = Day::Monday;
+
+    // Perform different actions based on day
+    match today {
+        Day::Monday => println!("Everyone hates Monday"),
+        Day::Tuesday => println!("Donut day"),
+        Day::Wednesday => println!("Hump day"),
+        Day::Thursday => println!("Pay day"),
+        Day::Friday => println!("Almost Weekend"),
+        Day::Saturday => println!("Weekend!!!"),
+        Day::Sunday => println!("Weekend!!!"),
+    }
+
+    // Check if today is a weekend
+    println!("Is today the weekend {}", today.is_weekend());
 }

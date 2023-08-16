@@ -1,8 +1,16 @@
+enum Data {
+    Tipo1(i32),
+    Tipo2(String),
+}
+
 fn main() {
     println!("{}", suma(15, 5));
     let mut sum = 0;
     for i in -3..2 {
         sum += i
+    }
+    for tipo in Data::into() {
+        println!("{}", tipo);
     }
     println!("{}", sum);
     assert!(sum == -5);

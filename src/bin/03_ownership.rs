@@ -1,5 +1,4 @@
 // Owner ship rules
-
 /*
 1 Each value en Rust has a varible that's called its owner
 2 There can only be one owner at a time
@@ -94,14 +93,14 @@ fn double_ref() {
 }
 
 fn call_dangle() {
-    let refer_to_nothing = dangle();
+    // let refer_to_nothing = dangle();
 }
 
 fn dangle() -> &String {
-    //<<<--- CHECK FOR THE ERROR THAT HAPPENS HERE
+    // //<<<--- CHECK FOR THE ERROR THAT HAPPENS HERE
 
-    let s: String = String::from("value");
-    &s
+    // let s: String = String::from("value");
+    // &s
 }
 
 // REFERENCES rules

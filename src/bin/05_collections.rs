@@ -30,12 +30,20 @@ use std::collections::HashMap;
 fn main() {
     let mut my_vec = vec![1, 2, 3];
 
+    // Sort characters
+    my_vec.sort();
+
+    // Remove duplicates
+    my_vec.dedup();
+
     my_vec.push(9);
 
     let str_sequence = String::from("Hello");
 
-    let mut coffe = HashMap::new();
-    coffe.insert("latte", 10);
+    let mut to_be_cleared = String::from("this gone");
+
+    // Delete values in a string if mutable
+    to_be_cleared.clear();
 
     let idx: usize = 0; // we can not use i32
     println!("{}", my_vec[idx]);
@@ -45,9 +53,47 @@ fn main() {
         None => println!("out of index"),
     }
 
+    for dat in my_vec {
+        println!("{}", dat);
+    }
+
+    //println!("{:?}", my_vec);
+
+    // use iter() to avoid the borrowed values from vector
+    // for dat in my_vec.iter() {
+    //     println!("{}", dat + 1);
+    // }
+
+    // println!("{:?}", my_vec);
+
+    // for dat in my_vec.iter_mut() {
+    //     *dat += 10;  // here use * to dereference the variable and update the value where the dat is pointing to
+    //     println!("{}", dat);
+    // }
+    // or
+    for dat in &mut my_vec {
+        *dat += 10; // here use * to dereference the variable and update the value where the dat is pointing to
+        println!("{}", dat);
+    }
+
+    let mut coffe = HashMap::new();
+    coffe.insert("latte", 10);
+    coffe.insert("Mocka", 17);
+    coffe.insert("simple", 10);
+
     for (name, value) in &coffe {
         println!("name ->{name}, vlaue->{value}");
     }
+    // Iterate over hashmap
+    for (k, v) in coffe.iter() {
+        println!("{} = {}", k, v);
+    }
+
+    // Check for key in hashmap
+    if coffe.contains_key(&"latte") {
+        println!("we have latte");
+    }
+
     let tup = (1, 2, "something");
 
     let my_array: [u8; 4] = [1, 2, 6, 3];

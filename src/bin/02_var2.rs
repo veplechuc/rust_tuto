@@ -1,7 +1,7 @@
 #![allow(unused)]
 
 use rand::Rng;
-use std::{io, result};
+use std::{cmp::Ordering, io, result};
 
 fn main() {
     println!("Hello, world!");
@@ -10,7 +10,9 @@ fn main() {
 
     // x= 10; error because it is inmutabñe
 
-    let x = "six"; // shadowing variable x
+    let x = "six"; // use "" for str
+
+    let xy = 'd'; // use '' to char
 
     let _variable: i128; // '_' previene que el compilador diga que no esta usada
 
@@ -118,20 +120,20 @@ fn main() {
     let numb = if condition { 7 } else { 10 };
 
     //loop
-    loop {
-        println!("inside loop");
-        break;
-    }
+    // loop {
+    //     println!("inside loop");
+    //     break;
+    // }
 
     // break uses conditional names to breaks
     // same for continue
-    'bob: loop {
-        loop {
-            loop {
-                break 'bob;
-            }
-        }
-    }
+    // 'bob: loop {
+    //     loop {
+    //         loop {
+    //             break 'bob;
+    //         }
+    //     }
+    // }
 
     let mut coun = 0;
 
@@ -177,6 +179,14 @@ fn main() {
     //     }
     // }
     pattern();
+
+    let my_age = 18;
+    let voting_age = 18;
+    match my_age.cmp(&voting_age) {
+        Ordering::Less => println!("Can't Vote"),
+        Ordering::Greater => println!("Can Vote"),
+        Ordering::Equal => println!("You just gained the right to vote!"),
+    };
 }
 
 //Pattern matching

@@ -13,18 +13,18 @@ pub struct Otra {
     var11: u32,
     var12: u32,
 }
-pub trait Somthing {
-    // can be taked as a abstrac or interface for structs
+pub trait Something {
+    // can be taken as an interface for structs
     fn una_func(&self);
 }
 
-impl Somthing for Algo {
+impl Something for Algo {
     fn una_func(&self) {
         println!("implementation of una_func for Algo struct \n")
     }
 }
 
-impl Somthing for Otra {
+impl Something for Otra {
     fn una_func(&self) {
         println!("implementation of una_func for Otra struct \n")
     }
