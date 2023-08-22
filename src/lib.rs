@@ -44,3 +44,10 @@ pub enum PuzzleError {
     #[error("Missing a piece")]
     MissingPiece,
 }
+
+// must refer to a file
+pub mod file_mod1;
+// this case refers to a folder an inside a mod.rs
+pub mod maths;
+
+pub mod my_mod;

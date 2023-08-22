@@ -187,6 +187,9 @@ fn main() {
         Ordering::Greater => println!("Can Vote"),
         Ordering::Equal => println!("You just gained the right to vote!"),
     };
+
+    //DANGLE REFERENCE  // UNCOMMENT THIS CODE TO CHECK
+    //let reference_to_nothing = dangle();
 }
 
 //Pattern matching
@@ -226,3 +229,9 @@ fn suma(x: i32, y: i32) -> i32 {
 
 // println!("{:<10}");
 // print!("{:*>10}");
+
+fn dangle() -> &String {
+    let s = String::from("hello");
+
+    &s
+}

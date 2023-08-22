@@ -19,6 +19,7 @@
 //-------
 // binary heap -- priority queue implementation
 
+// Primitives types
 // Arrays -> fixed size, contiguos in memory, objects of the same type are 0 base
 
 // Tuples -> finite (contains different types sequensce of elementes) objs of different types
@@ -53,9 +54,9 @@ fn main() {
         None => println!("out of index"),
     }
 
-    for dat in my_vec {
-        println!("{}", dat);
-    }
+    // for dat in my_vec {
+    //     println!("{}", dat);
+    // }
 
     //println!("{:?}", my_vec);
 
@@ -81,6 +82,9 @@ fn main() {
     coffe.insert("Mocka", 17);
     coffe.insert("simple", 10);
 
+    // this will not update the existing value for that existing key
+    coffe.entry("latte").or_insert(44);
+
     for (name, value) in &coffe {
         println!("name ->{name}, vlaue->{value}");
     }
@@ -93,6 +97,16 @@ fn main() {
     if coffe.contains_key(&"latte") {
         println!("we have latte");
     }
+
+    //pay attetion to this example!!!
+    // we want to count the frecuency of the values in a vec
+    let vect = vec![2, 1, 5, 4, 2, 1, 4, 2, 4];
+    let mut frec_vec = HashMap::new();
+    for i in &vect {
+        let mut frecu = frec_vec.entry(*i).or_insert(0);
+        *frecu += 1; // this is a mutable reference to the value obtained in the previos sentence
+    }
+    println!("fecuency of values -> {:?}", frec_vec);
 
     let tup = (1, 2, "something");
 

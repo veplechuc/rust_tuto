@@ -21,6 +21,25 @@ impl Child {
     // Child-specific methods
 }
 
+///////////////////// example of default
+#[derive(Debug)]
+struct Person {
+    name: String,
+    age: u8,
+    grade: String,
+}
+impl Default for Person {
+    fn default() -> Person {
+        Person {
+            name: "Alfred".to_string(),
+            age: 0,
+            grade: "Junior".to_string(),
+        }
+    }
+}
+
+////////////////////////////////////////////
+
 #[derive(Debug)]
 struct Rectangle {
     width: u32,
@@ -42,19 +61,26 @@ impl Product {
             in_stock: true,
         }
     }
+    // we can use Self
+    // fn new(name: String, price: f32) -> Self {
+    //     Self { ...
+
     fn get_default_sales_tax() -> f32 {
         0.1
     }
+    // this is a METHOD associated to the implementation instance, because uses "self"
     fn calculate_sales_tax(&self) -> f32 {
         self.price * Product::get_default_sales_tax()
     }
+
     fn set_price(&mut self, price: f32) {
         self.price = price;
     }
-    fn buy(self) -> i32 {
+
+    fn buy(self) -> f32 {
         let name = self.name;
-        println!("{name} was bought!");
-        123
+        println!("{} was bought! for {}", name, self.price);
+        self.price
     }
 }
 
@@ -87,6 +113,18 @@ fn set_email(u: User) -> User {
 }
 
 fn main() {
+    let tmp_all_default = Person {
+        ..Person::default()
+    };
+    let tmp_with_name = Person {
+        name: "Sam".to_string(),
+        grade: "Master".to_string(),
+        ..Person::default()
+    };
+
+    println!("tmp_all_defaul {:#?}", tmp_all_default);
+    println!("tmp_with_name {:?}", tmp_with_name);
+
     // create a new intance
     let u1 = User {
         email: String::from("someone@example.com"),
@@ -124,21 +162,24 @@ fn main() {
     let sales_tax = book.calculate_sales_tax();
     println!("sales tax: {}", sales_tax);
     book.set_price(1.0);
+    // we can use the Product struct an pass in the ref to the instance
+    Product::set_price(&mut book, 9910.3);
+
     book.buy();
 
     #[derive(Debug)]
-    struct Person {
+    struct Person2 {
         name: String,
         age: Box<u8>,
     }
 
-    let person = Person {
+    let person = Person2 {
         name: String::from("Alice"),
         age: Box::new(20),
     };
 
     // `name` is moved out of person, but `age` is referenced
-    let Person { name, ref age } = person;
+    let Person2 { name, ref age } = person;
 
     println!("The person's age is {}", age);
 

@@ -42,6 +42,7 @@ impl Animal for Spider {}
 // TRAITS AS PARAMETERS AND TRAITS BOUNDS
 
 fn make_animal_talk(animal: &(impl Animal)) {
+    //<-- here we define the trait bounds
     // implement Animal traits instead of an concrete implementation
     println!(
         "imprimimos lo correspondiente implementado en el trait {}",
@@ -74,7 +75,7 @@ fn make_animal_talk(animal: &(impl Animal + std::fmt::Display)){
 
 fn ret_val() -> impl Animal {
     Dog {
-        name: "from_retunr".to_string(),
+        name: "from_return".to_string(),
     }
 }
 
@@ -89,8 +90,14 @@ fn ret_val_box(var: bool) -> Box<dyn Animal> {
         })
     }
 }
+//blanket implementations
+// He tostring is implemented on any type that implements Display
+// impl<T: Display> ToString for T {
+//     //
+// }
 
-// ASSOCIATED TYPES
+// ASSOCIATED TYPES /////////////////////////////////////////////////////////
+// similar concept like Generics but cant implement for more than one type
 trait Incrementor {
     type Item; //In traits, type is used to declare an associated type
     fn increment(&mut self) -> Self::Item; // returns the value of that type
@@ -108,13 +115,36 @@ impl Incrementor for Counter {
     }
 }
 
+// same as before but using generics
+trait IncrementorT<T> {
+    fn increment(&mut self) -> T; // returns the value of that type
+}
+
+struct CounterT<T> {
+    count: T,
+}
+
+impl IncrementorT<u32> for CounterT<u32> {
+    fn increment(&mut self) -> u32 {
+        self.count += 1;
+        self.count
+    }
+    // impl IncrementorT<u16> for CounterT<u16> {
+    //  ...
+}
+
 // RULE:
 // FOR MULTIPLE CONCRETE TYPES -->> USE GENERICS
 // ONLY FOR ONE TYPE -->> USE ASSOCIATED TYPES
 // RUST allows  trait to have a method that shares the same name as a method from another trait
 // it's also possible to implement a method directly on a type, with the same name as a method from another trait.
 
+///// FULLY QUALIFIED SYNTAX /////////////////////////////////////////////////
 trait File {
+    fn write(&self);
+}
+
+trait Printer {
     fn write(&self);
 }
 
@@ -128,11 +158,16 @@ impl Logger {
 
 impl File for Logger {
     fn write(&self) {
-        println!("write this from File to screen...")
+        println!("write this from File to screen On logger...")
     }
 }
 
-// SUPER TRAITS
+impl Printer for Logger {
+    fn write(&self) {
+        println!("write this from Printer to screen on Logger...")
+    }
+}
+// SUPER TRAITS //////////////////////////////////////////////////
 trait Speak {
     fn speack(&self);
 }
@@ -140,7 +175,7 @@ trait Speak {
 trait Greet: Speak {
     fn greet(&self) {
         self.speack();
-        println!(" esto es especifico de greet...");
+        println!("Hello from gree func on Greet Trait");
     }
 }
 
@@ -154,7 +189,11 @@ impl Speak for Person {
     }
 }
 
-use std::ops::Add;
+impl Greet for Person {} // we dont need to implement nothing here
+                         // because Greet has an Default implementation
+
+//OPERATOR OVERLOADING //////////////////////////////////////////////////////
+use std::{fmt::Display, ops::Add};
 
 #[derive(Debug, Copy, Clone, PartialEq)]
 struct Coordinate {
@@ -163,6 +202,8 @@ struct Coordinate {
     latitude: f64,
 }
 
+// here we overwritten and we can add two Coordinate types using the "+" sign
+// check Add on std library to see the RHS behaviour
 impl Add for Coordinate {
     type Output = Coordinate;
 
@@ -172,6 +213,18 @@ impl Add for Coordinate {
             longitude: (self.longitude + other.longitude),
             latitude: (self.latitude + other.latitude),
         }
+    }
+}
+
+/////// NEW TYPE PATTERNS
+/// wrapping a single value of an existing type in a new type
+/// you can use the newtype pattern to create a newtype that wraps the external type, and then you implement your trait for that newtype. This way, you can effectively implement the desired trait without breaking the orphan rule. And, if you include that external crate, it isn't going to break your code.
+///
+struct Wrapper(Vec<String>); //we define a new type for the  external type Vec
+
+impl std::fmt::Display for Wrapper {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "[{}]", self.0.join(", "))
     }
 }
 
@@ -193,11 +246,16 @@ fn main() {
     // println!("{} -->> {}",spider.name, spider.talk());
     // make_animal_talk(&dog);
     // make_generic_talk(&spider);
+
     // // reutning values
+    // return type impl of Animal trait we can only use if there is one returning type
+    // because of the compiler restrictions
     let animal = ret_val();
     println!("from ret_val {}", animal.talk());
 
-    let dog = ret_val_box(true);
+    // for more than one option of returning type we need to use BOX
+    // this bring overhead on the proccesing
+    let dog = ret_val_box(true); //
 
     // associated types
     let mut couter = Counter { count: 0 };
@@ -205,11 +263,16 @@ fn main() {
     //     println!("Counter: {}", couter.increment());
     // }
 
-    // let log = Logger; // callls the write method from logger
-    // log.write();
-    // si necesitamos el log especifico de File usamos
-    // File::write(&log);
+    //FULLY QUALIFIED SYNTAX
+    let log = Logger;
+    // calls the write method from logger
+    log.write();
+    // if we need a specific implementation we use
+    File::write(&log);
+    Printer::write(&log);
+    <Logger as Printer>::write(&log);
 
+    //////////// check equality using add method overwritten
     assert_eq!(
         Coordinate {
             latitude: 1.0,
@@ -222,6 +285,14 @@ fn main() {
             longitude: 6.0,
             latitude: 4.0
         }
-    )
+    );
     //SUPERTRAITS ...
+    let p1 = Person {
+        name: "Vale".to_string(),
+    };
+    p1.greet(); // calls speak an greet
+
+    /// New TYPE PATTERNS
+    let wrapper = Wrapper(vec![String::from("hello"), String::from("rustaceans!!")]);
+    println!("wrapper -> {}", wrapper);
 }

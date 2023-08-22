@@ -1,4 +1,4 @@
-// 5option for creating Json
+// option for creating Json
 use serde::Serialize;
 // use serde_json::json; // uncomment when use json!
 use std::collections::HashMap;

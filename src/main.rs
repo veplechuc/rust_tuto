@@ -15,8 +15,7 @@ fn main() {
 // MANAGING RUST VERSIONS
 
 // A particular version of Rust (and it's associated version of the standard library and other tools) is called a toolchain. rustup can manage multiple toolchains on your machine at once. https://rust-lang.github.io/rustup/concepts/toolchains.html Then, you can use directory overrides (https://rust-lang.github.io/rustup/overrides.html#directory-overrides)
-// to customize which versions of Rust you use locally,
-// To use to a specific nightly for a directory:
+// to customize which versions of Rust you use locally, To use to a specific nightly for a directory:
 // rustup override set nightly-2014-12-18
 // Or a specific stable release:
 // rustup override set 1.0.0
@@ -74,7 +73,7 @@ fn main() {
 
 // running cargo build will generate
 // Compiling app1 v0.1.0 (/path/project/app1)
-// Compiling planet-mars v0.1.0 (/path/project/app2) ...
+// Compiling app2 v0.1.0 (/path/project/app2) ...
 
 // then run specific
 // $ cargo run -p app1

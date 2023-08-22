@@ -10,7 +10,7 @@ pub fn func1() {
     println!("Function 1 from my_mod");
 }
 
-pub mod my_mod {
+pub mod my_mod1 {
     // Items in modules default to private visibility.
     fn private_function() {
         println!("called `my_mod::private_function()`");
