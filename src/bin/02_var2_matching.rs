@@ -208,6 +208,22 @@ fn pattern() {
 
         _ => println!("I dont know .. and I dont care!"), // no matches
     }
+    let triple = [0, -2, 3];
+    println!("Tell me about {triple:?}");
+    match triple {
+        [0, y, z] => println!("First is 0, y = {y}, and z = {z}"),
+        [1, ..] => println!("First is 1 and the rest were ignored"),
+        _ => println!("All elements were ignored"),
+    }
+    // with conditional
+    let tup = (2, -2);
+    println!("Let's compare {:?} ", tup);
+    match tup {
+        (x, y) if x == y => println!("equals..."),
+        (x, y) if x + y == 0 => println!(" x = {x} + y = {y} == {}", x + y),
+        (x, _) if x % 2 == 1 => println!("The first one is odd"),
+        _ => println!("No correlation..."),
+    }
 }
 
 fn suma(x: i32, y: i32) -> i32 {
@@ -230,8 +246,8 @@ fn suma(x: i32, y: i32) -> i32 {
 // println!("{:<10}");
 // print!("{:*>10}");
 
-fn dangle() -> &String {
-    let s = String::from("hello");
+// fn dangle() -> &String {
+//     let s = String::from("hello");
 
-    &s
-}
+//     &s
+// }
