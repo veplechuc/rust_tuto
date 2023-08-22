@@ -52,7 +52,9 @@ struct Product {
     in_stock: bool,
 }
 
-/* a struct could have many impl defined */
+/* a struct could have many fn defined
+Methods are called on an instance of a type
+*/
 impl Product {
     fn new(name: String, price: f32) -> Product {
         Product {
