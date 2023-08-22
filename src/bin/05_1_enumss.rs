@@ -1,4 +1,6 @@
 #![allow(dead_code)]
+
+use std::result;
 enum IpAdrr {
     V4(u8, u8),
     V6,
@@ -9,24 +11,6 @@ enum Message {
     Move { x: i32, y: i32 }, // stores a anonymous struct
     Write(String),           // single string
     ChangeColor(i128),       // store a 128 integer
-}
-
-// define an implementation block for the message
-impl Message {
-    fn algo() {
-        println!("some text");
-    }
-}
-
-// MATCHING
-// SOME and NONE siempre se deben definir sino usar "_"
-
-fn plus_one(x: Option<i32>) -> Option<i32> {
-    match x {
-        None => None,
-        Some(i) => Some(i + 1),
-        // _ => None si queremos matchear cualquier otra cosa
-    }
 }
 
 // ENUM
@@ -58,19 +42,16 @@ enum AnotherColor {
 //     None
 // }
 
+// enum Result<T, E> {
+//    Ok(T),
+//    Err(E),
+// }
+
 fn main() {
-    let algo = Some(5);
-    let y = 2;
-
-    let sum = algo.unwrap_or(0) + y;
-
-    let five = Some(5);
-    let six = plus_one(five);
-    let none = plus_one(None);
-
     let s: Something = Something::Name("some name".to_string()); // we need to specify the value
     let s: Something = Something::Number(5); // we need to specify the value
     match s {
+        Something::Name(n) => println!("{}", n), // extract the value to a new variable
         Something::Number(n) => println!("{}", n), // extract the value to a new variable
         _ => println!("Nothing..."),
     }
@@ -98,6 +79,16 @@ fn main() {
     }
 
     // MORE EXAMPLES
+
+    enum Vals {
+        Var1, // 0
+        Var2 = 10000,
+        Var3, // 10001
+    }
+
+    println!("var1: {}", Vals::Var1 as u32);
+    println!("var2: {}", Vals::Var2 as u32);
+    println!("var3: {}", Vals::Var3 as u32);
 
     // Create an Enum for days of week
     enum Day {
@@ -128,10 +119,9 @@ fn main() {
         Day::Monday => println!("Everyone hates Monday"),
         Day::Tuesday => println!("Donut day"),
         Day::Wednesday => println!("Hump day"),
-        Day::Thursday => println!("Pay day"),
+        Day::Thursday => println!("Hung out day"),
         Day::Friday => println!("Almost Weekend"),
-        Day::Saturday => println!("Weekend!!!"),
-        Day::Sunday => println!("Weekend!!!"),
+        Day::Saturday | Day::Sunday => println!("Weekend!!!"),
     }
 
     // Check if today is a weekend
