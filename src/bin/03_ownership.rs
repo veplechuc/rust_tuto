@@ -84,12 +84,12 @@ fn double_ref() {
     // the variable scope begins when the var is declared and end when is no more used
     let mut ns_mut = String::from("some another text");
 
-    let _r11: &String = &ns_mut; // R11 SCOPE begins here
+    let _r11: &String = &ns_mut; // _r11 SCOPE begins here
     let _r21: &String = &ns_mut;
 
-    println!("{} {}", _r11, _r21); //R11 SCOPE Ends here
+    println!("{} {}", _r11, _r21); // _r11 SCOPE Ends here
 
-    let _r31: &mut String = &mut ns_mut; // This works because R11 Y R21 are not in the scope anymore
+    let _r31: &mut String = &mut ns_mut; // This works because _r11 Y _r21 are not in the scope anymore
 }
 
 fn call_dangle() {
