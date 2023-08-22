@@ -51,3 +51,6 @@ pub mod file_mod1;
 pub mod maths;
 
 pub mod my_mod;
+
+#[path = "bin/another_mod/math2.rs"]
+pub mod math2;

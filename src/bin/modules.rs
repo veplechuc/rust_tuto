@@ -3,6 +3,8 @@ use rust_tuto::maths::basic_m::multi;
 
 use rust_tuto::my_mod::my_mod1::function;
 
+use rust_tuto::math2::ptr;
+
 fn main() {
     // Easier access to `deeply::nested::function`
     // ext_mod::function();
