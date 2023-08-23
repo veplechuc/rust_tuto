@@ -100,6 +100,7 @@ fn main() {
 
     //pay attetion to this example!!!
     // we want to count the frecuency of the values in a vec
+    // Use the .entry() method to insert a value if nothing is found.
     let vect = vec![2, 1, 5, 4, 2, 1, 4, 2, 4];
     let mut frec_vec = HashMap::new();
     for i in &vect {
