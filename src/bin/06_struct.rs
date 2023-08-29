@@ -53,19 +53,33 @@ struct Product {
 }
 
 /* a struct could have many fn defined
-Methods are called on an instance of a type
+we can have more that one impl block for the same type
 */
 impl Product {
-    fn new(name: String, price: f32) -> Product {
-        Product {
-            name: name,
-            price: price,
-            in_stock: true,
-        }
-    }
     // we can use Self
     // fn new(name: String, price: f32) -> Self {
     //     Self { ...
+
+    fn new(name: String, price: f32) -> Product {
+        Product {
+            name,
+            price,
+            in_stock: true,
+        }
+    }
+}
+
+impl Product {
+    fn prod(name: String, price: f32) -> f32 {
+        // this is an asociated func
+        println!("yo passed -> {}", name);
+        price * 0.25
+    }
+
+    fn other(&self, data: i32) -> f32 {
+        // this is s method because have self
+        self.price * data as f32
+    }
 
     fn get_default_sales_tax() -> f32 {
         0.1
@@ -74,11 +88,12 @@ impl Product {
     fn calculate_sales_tax(&self) -> f32 {
         self.price * Product::get_default_sales_tax()
     }
-
+    // here we use a mut reference of sel
     fn set_price(&mut self, price: f32) {
         self.price = price;
     }
 
+    // we exclusive get access to self
     fn buy(self) -> f32 {
         let name = self.name;
         println!("{} was bought! for {}", name, self.price);
@@ -115,13 +130,14 @@ fn set_email(u: User) -> User {
 }
 
 fn main() {
+    //use the default imple to "initialize" the instance
     let tmp_all_default = Person {
         ..Person::default()
     };
     let tmp_with_name = Person {
         name: "Sam".to_string(),
         grade: "Master".to_string(),
-        ..Person::default()
+        ..Person::default() // dont put "," here it will trow an error
     };
 
     println!("tmp_all_defaul {:#?}", tmp_all_default);
@@ -136,9 +152,15 @@ fn main() {
     };
 
     let u2 = set_email(u1);
-    println!("{:?}", u2);
+    println!(" definition of u2 instance->{:?}", u2);
     println!("Success!");
 
+    // we can use a sinlg e field and destructuring
+    let User {
+        email, username, ..
+    } = u2;
+
+    println!("Just email and username ->{} ... {}", email, username);
     // OTHER STRUCT DEF
     struct Colour(i32, i32, i32);
 
