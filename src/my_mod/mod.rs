@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 // Creates a module
 // Contains other modules which hold functions,
 // structs, enums, constants, traits
@@ -5,7 +7,6 @@
 // parts of it private (Everything is Private by Default)
 // Parent modules can't access private items in child modules
 // but children can always access parent items
-
 pub fn func1() {
     println!("Function 1 from my_mod");
 }
