@@ -82,4 +82,42 @@ pub enum SpecialError2 {
 //     fig.rotate()?.paint()?.display()?;
 // }
 
+/////////////////////  MORE ON ERRORS
+/// if let Ok(value) = a_function_that_can_error() {
+// something with the value
+// }
+
+// match a_function_that_can_error() {
+//     Ok(value) => println!("oh yeah, value! {}", value);
+//     Err(e) => eprintln!("ohh no... {}", e);
+// }
+
+// // you don't care about the error
+// _ = a_function_that_can_error();
+
+// // yolo
+// let foo = a_function_that_can_error().unwrap();
+
+// // respectful yolo
+// let foo = a_function_that_can_error().expect("should never fail");
+
+// // defaults
+// let foo = a_function_that_can_error().unwrap_or(0);
+
+// // convert to option
+// // Ok(V) => Some(V)
+// // Err(E) => None
+// // bai felicia
+// let foo = a_function_that_can_error().ok();
+
+// let foo = a_function_that_can_error()
+//     .map(|value| value + 1);
+
+// let foo = a_function_that_can_error()
+//     .and_then(|value| another_possible_error(value))
+//     .and_then(|value| again(value));
+
+// // If your function returns an error, you can do this!
+// let foo = a_function_that_can_error()?;
+
 fn main() {}
