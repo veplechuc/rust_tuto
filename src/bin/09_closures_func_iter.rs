@@ -82,6 +82,19 @@ fn main() {
 
     let resp = repeat(add_val, 50);
     println!("value of repeat ->{}", resp);
+
+    ////////////// ITERATOR
+    // reads a text file from disc, the odd lines
+    // skips 2 lines and takes the consecutives 2
+    // Rust "pulls" values from the structure, does not push it
+
+    let file = std::fs::read_to_string("src/texto.txt").unwrap();
+    file.lines()
+        .enumerate()
+        .skip(2)
+        .take(4) // this returns a tuple
+        .filter(|(idx, _)| idx % 2 == 0)
+        .for_each(|(_, line)| println!("{}", line));
 }
 
 // You can pass closures to functions
