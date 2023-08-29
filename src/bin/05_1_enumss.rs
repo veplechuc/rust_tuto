@@ -2,7 +2,7 @@
 
 use std::result;
 enum IpAdrr {
-    V4(u8, u8),
+    V4(u8, u8, u8, u8),
     V6,
 }
 
@@ -47,18 +47,45 @@ enum AnotherColor {
 //    Err(E),
 // }
 
+// Example of enums with struct
+#[derive(Debug)]
+struct Custom {
+    age: usize,
+    name: String,
+}
+#[derive(Debug)]
+enum Item {
+    Number(usize),
+    Mycustom(Custom),
+}
+
+fn app_item(v: &mut Vec<Item>) {
+    v.push(Item::Number(8));
+    v.push(Item::Mycustom(Custom {
+        age: 22,
+        name: "hola".to_string(),
+    }));
+}
+
 fn main() {
+    println!("//////////////////////////////");
+    let mut vec: Vec<Item> = vec![];
+    app_item(&mut vec);
+    println!("{:?}", vec.get(1));
+    println!("{:?}", vec[0]);
+    println!("//////////////////////////////");
+
     let s: Something = Something::Name("some name".to_string()); // we need to specify the value
     let s: Something = Something::Number(5); // we need to specify the value
     match s {
-        Something::Name(n) => println!("{}", n), // extract the value to a new variable
-        Something::Number(n) => println!("{}", n), // extract the value to a new variable
+        Something::Name(n) => println!("el nombre es ->{}", n), // extract the value to a new variable
+        Something::Number(n) => println!("el numero es ->{}", n), // extract the value to a new variable
         _ => println!("Nothing..."),
     }
     let c: Colour = Colour::Red;
 
     match c {
-        Colour::Red => println!("Rojo"),
+        Colour::Red => println!("el color es Rojo"),
         _ => println!("no taken into account"),
     }
 
@@ -79,7 +106,7 @@ fn main() {
     }
 
     // MORE EXAMPLES
-
+    // consecutuves values..
     enum Vals {
         Var1, // 0
         Var2 = 10000,
