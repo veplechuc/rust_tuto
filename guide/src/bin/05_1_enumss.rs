@@ -1,6 +1,5 @@
 #![allow(dead_code)]
 
-use std::result;
 enum IpAdrr {
     V4(u8, u8, u8, u8),
     V6,

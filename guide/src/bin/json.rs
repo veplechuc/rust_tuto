@@ -1,7 +1,7 @@
 // option for creating Json
 use serde::Serialize;
 // use serde_json::json; // uncomment when use json!
-use std::collections::HashMap;
+// use std::collections::HashMap;
 
 #[derive(Debug, Serialize)]
 struct Account {

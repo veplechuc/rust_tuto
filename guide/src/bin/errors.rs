@@ -56,11 +56,9 @@ struct SumError;
 
 // que pasa si queremos ahacer algo con el error que se pueda generar
 fn sum_option3(strs: Vec<String>) -> Result<String, SumError> {
-    // DEVUELVO SI ESTA BIN P ERROR
-    // esta func retorna una Result
     let mut ac = 0;
     for s in strs {
-        ac += to_int_op(&s).ok_or(SumError)?; // propaga el None en el stack
+        ac += to_int_op(&s).ok_or(SumError)?; // propagates the None on the stack
     }
     Ok(ac.to_string())
 }
@@ -96,10 +94,10 @@ fn main() {
 
 //contenedore
 
-pub enum Option<T> {
-    None,    // struct sin fields
-    Some(T), // es una tuple struct
-}
+// pub enum Option<T> {
+//     None,    // struct sin fields
+//     Some(T), // es una tuple struct
+// }
 
 fn using_option() {
     let x = 2.0;
@@ -119,13 +117,13 @@ fn using_option() {
     } // if the distructuring (let Some(z) = result) works it will print the result
 }
 
-pub enum Result<T, E> {
-    // explicit defines success and error states
-    /// Contains the success value
-    Ok(T), // tuple struct
-    /// Contains the error value
-    Err(E), // tuple struct
-}
+// pub enum Result<T, E> {
+//     // explicit defines success and error states
+//     /// Contains the success value
+//     Ok(T), // tuple struct
+//     /// Contains the error value
+//     Err(E), // tuple struct
+// }
 
 //unwrap toma el valor del container y lo devuelve si existe sino se puede especificar que hacer si no se hace nada panic!
 

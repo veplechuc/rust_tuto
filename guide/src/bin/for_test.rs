@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+#![allow(unused_mut)]
 fn main() {
     println!("Hello, world!");
     let x = 5; // variables ARE inmutable!!!
@@ -26,7 +28,7 @@ fn main() {
 
     //-------- explicit
     let s = String::from("hola");
-    let st: &String = &s; // borrows but does not owns s-- I wrote &String
+    let _st: &String = &s; // borrows but does not owns s-- I wrote &String
 
     //borrow it is like  when passed an objec to a function as reference
 
@@ -62,40 +64,43 @@ fn main() {
     // println!(" value of y2 -> {}", y2);
 
     // ARRAYs TUPLES
-    let mut lista = [1, 2, 3]; // use mut to change the values of the array
+    let lista = [1, 2, 3]; // use mut to change the values of the array
 
     let mut vec = Vec::<i32>::new();
-    let mut vec2 = vec![lista];
+    let vec2 = vec![lista];
 
+    println!("vec2 value -> {:?}", vec2);
     vec.push(100);
 
     //vec.pop... or vec[0] .. vec.len()
     let index = 3;
     let op = vec.get(index);
     match op {
-        Some(value) => println!("something"),
+        Some(_value) => println!("something"),
         None => {}
     }
 
     // ternary
     let condition = true;
-    let numb = if condition { 7 } else { 10 };
+    let _numb = if condition { 7 } else { 10 };
 
-    //loop
-    loop {
-        println!("inside loop");
-        break;
-    }
+    /////////loop
+
+    // loop {
+    //     println!("inside loop");
+    //     break;
+    // }
 
     // break uses conditional names to breaks
     // same for continue
-    'bob: loop {
-        loop {
-            loop {
-                break 'bob;
-            }
-        }
-    }
+
+    // 'bob: loop {
+    //     loop {
+    //         loop {
+    //             break 'bob;
+    //         }
+    //     }
+    // }
 
     let mut coun = 0;
 
@@ -130,16 +135,14 @@ fn main() {
     let mut num = 1;
     println!("using loop while..");
     while num != 0 {
-        num = num - 1;
+        num -= 1;
         println!("{}", num);
     }
 
-    /// Lifetime
+    /* **********Lifetime **************/
     let mut x = Box::new(42);
     let mut z = &x; // 'a
-
-    let mut x = Box::new(42);
-    //
+                    //
     for i in 0..100 {
         println!("{}", z); //'a
 

@@ -3,7 +3,9 @@
 
 // need to use log from the crates.io
 
-use log::{debug, info};
+//checks the value of RUST_LOG env variable or define it to some level
+
+use log::{debug, info, warn};
 
 #[derive(Debug)]
 struct Person {
@@ -13,7 +15,7 @@ struct Person {
 }
 impl Default for Person {
     fn default() -> Person {
-        debug!("called Default impl for Person");
+        info!("called Default impl for Person");
         Person {
             name: "Alfred".to_string(),
             age: 0,
@@ -29,6 +31,9 @@ fn main() {
         ..Person::default()
     };
     debug!("Person created");
+    warn!(
+        "dont put ',' at the end of the creation of the Person with default, will trhow an error"
+    );
     let tmp_with_name = Person {
         name: "Sam".to_string(),
         grade: "Master".to_string(),

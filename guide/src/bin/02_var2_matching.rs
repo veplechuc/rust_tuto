@@ -54,6 +54,8 @@ fn main() {
 
     //borrow it is like  when passed an objec to a function as reference
 
+    let str1 = String::from("😱👿😈👹");
+
     let mut s = String::from("hola");
     let st = &mut s; // borrows but does not owns s
                      // st is mutable

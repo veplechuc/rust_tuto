@@ -2,7 +2,7 @@ use std::io;
 
 fn main() {
     println!("Hello, world!");
-    let x: i55 = 5; //variables ARE inmutable!!!;
+    let x: i32 = 5; //variables ARE inmutable!!!;
     println!("{}", x);
 
     // x= 10; error because it is inmutable

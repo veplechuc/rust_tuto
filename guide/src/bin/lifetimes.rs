@@ -27,5 +27,5 @@ fn main() {
         name: "vale",
         age: 50,
     };
-    println!("{}", p1.name)
+    println!("{} and age {}", p1.name, p1.age)
 }

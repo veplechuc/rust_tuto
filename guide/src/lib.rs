@@ -55,3 +55,5 @@ pub mod my_mod;
 
 #[path = "bin/another_mod/math2.rs"]
 pub mod math2;
+
+//pub mod some_mode;

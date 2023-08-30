@@ -48,6 +48,9 @@ fn main() {
     let mut s_mut = String::from("some another text");
     from_mut(&mut s_mut); // s_mut can be changed and passed to the func
     println!("S_MUT  is {}", s_mut);
+
+    //SLICING
+    slicing()
 }
 
 // this func takes  ownership of s
@@ -96,12 +99,12 @@ fn call_dangle() {
     // let refer_to_nothing = dangle();
 }
 
-fn dangle() -> &String {
-    // //<<<--- CHECK FOR THE ERROR THAT HAPPENS HERE
+// fn dangle() -> &String {
+//     // //<<<--- CHECK FOR THE ERROR THAT HAPPENS HERE
 
-    // let s: String = String::from("value");
-    // &s
-}
+//     // let s: String = String::from("value");
+//     // &s
+// }
 
 // REFERENCES rules
 
@@ -111,9 +114,20 @@ fn dangle() -> &String {
 // SLICING ...
 
 fn slicing() {
-    let mut s: String = String::from("value valu3");
-
+    let s: String = String::from("1234567890111213");
+    println!("Value of s ->{}", s);
     let val = &s[..5]; // [0..5] if it is from the begining can ommit the begining
+    println!("Value of &s[..5] ->{}", val);
     let val2 = &s[6..]; // [6..11]if it until the end can ommit the end value
+    println!("Value of [6..11] ->{}", val2);
     let val3 = &s[..]; // all the slicing
+    println!("Value of &s[..] ->{}", val3);
+
+    // be careful with the index, not always represent the positions, instead is the numer of bytes of the store values
+    // &str1[..4] -> represent from the begining until the 4 byte on UTF-8
+
+    let str1 = String::from("😱👻🌕😰🌩️");
+    let val4 = &str1[..8];
+    //let val4 = &str1[..5]; <-- this will throw an errror
+    println!("value of &str1[..8] ->{}", val4);
 }

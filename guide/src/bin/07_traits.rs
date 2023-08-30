@@ -1,4 +1,5 @@
 #![allow(dead_code)]
+#![allow(unused_variables)]
 // Traits can be implemented by
 // struct, closure, enum function
 
@@ -33,7 +34,7 @@ impl Something for Otra {
 // if we want to goup them we can use a vector
 
 pub struct All {
-    pub components: Vec<Box<dyn Somthing>>,
+    pub components: Vec<Box<dyn Something>>,
 }
 
 impl All {
