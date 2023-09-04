@@ -1,4 +1,10 @@
 # check https://doc.rust-lang.org/cargo/reference/workspaces.html#virtual-workspace
 [workspace]
-members = [ "guide", "server"]
+
+members = [ "guide", "server", "modules"]
 resolver = "2"
+
+[workspace.dependencies]
+log = "0.4.2"
+env_logger = "0.10"
+regex = { version = "1.6.0", default-features = false, features = ["std"] }
