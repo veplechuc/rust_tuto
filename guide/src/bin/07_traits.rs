@@ -1,19 +1,15 @@
 #![allow(dead_code)]
 #![allow(unused_variables)]
+
 // Traits can be implemented by
 // struct, closure, enum function
+// traits allows to separate the data structure from data behaviour
 
-// Adding #[derive(Clone, Debug)] applies those traits to the specific struct
-#[derive(Clone, Debug)]
-pub struct Algo {
-    var1: u32,
-    var2: u32,
-}
-#[derive(Clone, Debug)]
-pub struct Otra {
-    var11: u32,
-    var12: u32,
-}
+// REMEMBER:
+// we can use the traits methods if we imports the traits itself
+
+use guide::structs_def::{Algo, Otra}; // we imported in order to use it
+
 pub trait Something {
     // can be taken as an interface for structs
     fn una_func(&self);
@@ -46,12 +42,7 @@ impl All {
     }
 }
 
-// implementation of the Default trait for Algo (use VS code to help)
-impl Default for Algo {
-    fn default() -> Self {
-        Algo { var1: 99, var2: 99 }
-    }
-}
+//
 
 // we can use #[derive(Default)].. but gives 0 numbers empty strings and collections
 

@@ -210,6 +210,10 @@ fn pattern() {
 
         _ => println!("I dont know .. and I dont care!"), // no matches
     }
+    // using other options
+    // var => passing_to_func(var); <-- passing the values that matches to the function
+    // _ => (); <-- do nothing if this is just one case use .. if let
+
     let triple = [0, -2, 3];
     println!("Tell me about {triple:?}");
     match triple {
@@ -217,6 +221,7 @@ fn pattern() {
         [1, ..] => println!("First is 1 and the rest were ignored"),
         _ => println!("All elements were ignored"),
     }
+
     // with conditional
     let tup = (2, -2);
     println!("Let's compare {:?} ", tup);
@@ -226,11 +231,25 @@ fn pattern() {
         (x, _) if x % 2 == 1 => println!("The first one is odd"),
         _ => println!("No correlation..."),
     }
+
+    // using patter and if let for one single case
+    let y: Option<i32> = None;
+
+    let conf = Some(3u8);
+    match conf {
+        Some(val) => println!("obtained value -> {}", val),
+        _ => (),
+    }
+
+    // let conf = Some(3u8);
+    // if let Some(val) = conf {
+    //     println!("obtained value -> {}", val);
+    // }
 }
 
 fn suma(x: i32, y: i32) -> i32 {
     println!("algo{} ", x);
-    return x + y; // or without "return", will return last sentence
+    x + y // or  "return x + y;"
 }
 
 // formatting code run cargo fmt
