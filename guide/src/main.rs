@@ -11,19 +11,21 @@ fn main() {
 
     let _variable: i128; // '_' prevent the compiler complains about unused variable
 
-    println!("{}", x); // prints 6 and 6%
-                       //// read from console and prints the value
+    println!("{}", x);
+
+    //// read from console and prints the value
     let mut input = String::new();
     println!("Enter a value:");
     io::stdin().read_line(&mut input).expect("Failed to read!!");
     println!("the input -> {}", input);
 
-    // match io::stdin().read_line(&mut input) {
-    //     Ok(_) => {
-    //         println!("the input -> {}", input)
-    //     }
-    //     Err(error) => println!("error: {error}"),
-    // }
+    //using matching pattern
+    match io::stdin().read_line(&mut input) {
+        Ok(_) => {
+            println!("the input -> {}", input)
+        }
+        Err(error) => println!("error: {error}"),
+    }
 }
 
 // MANAGING RUST VERSIONS
