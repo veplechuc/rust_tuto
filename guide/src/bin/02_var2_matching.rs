@@ -8,7 +8,7 @@ fn main() {
     let x = 5; // variables ARE inmutable!!!
     println!("{}", x);
 
-    // x= 10; error because it is inmutabñe
+    // x= 10; error because it is inmutable
 
     let x = "six"; // use "" for str
 
@@ -16,7 +16,7 @@ fn main() {
 
     let _variable: i128; // '_' previene que el compilador diga que no esta usada
 
-    println!("{}", x); // prints 6 and 6%
+    println!("{}", x); //
 
     const DATA: i32 = 600_000; // const MUST be annotated can not be mutable
 
@@ -54,12 +54,10 @@ fn main() {
 
     //borrow it is like  when passed an objec to a function as reference
 
-    let str1 = String::from("😱👿😈👹");
-
     let mut s = String::from("hola");
     let st = &mut s; // borrows but does not owns s
                      // st is mutable
-    st.push('g');
+    st.push('g'); // ue '' for chars
 
     // compound types
     let tup = ("some tuple", 120);
@@ -90,7 +88,10 @@ fn main() {
     let mut lista = [1, 2, 3]; // use mut to change the values of the array
 
     let mut vec = Vec::<i32>::new();
-    let mut vec2 = vec![lista];
+    let mut vec2: Vec<i32> = lista.to_vec();
+
+    vec2.push(1000);
+    println!("{:?}", vec2);
 
     vec.push(100);
 
@@ -167,6 +168,8 @@ fn main() {
         num = num - 1;
         println!("{}", num);
     }
+
+    let x = &[1, 2, 4];
 
     /* multiline comment
        this is a multiline
